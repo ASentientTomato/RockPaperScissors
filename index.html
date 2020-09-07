@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rock, Paper, Scissors</title>
+</head>
+
+<body>
+    <script>
+        function computerPlay() {
+            let number = Math.floor(3 * Math.random());
+            return ["rock", "paper", "scissors"][number];
+        }
+
+        function findWinner(playerChoice, computerChoice) {
+            playerChoice = playerChoice.toLowerCase();
+            if (playerChoice == computerChoice) {
+                return "It's a draw!";
+            }
+            else if ((playerChoice == "rock" && computerChoice == "scissors") || (playerChoice == "paper" && computerChoice == "rock") || (playerChoice == "scissors" && computerChoice == "paper")) {
+                return `You win! ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)} beats ${computerChoice}!`;
+            }
+            return `You lose! ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)} beats ${playerChoice}!`;
+        }
+
+
+        function game() {
+            let pWins = 0;
+            let cWins = 0;
+            while (pWins < 3 && cWins < 3) {
+                let playerMove = prompt("Rock, paper or scissors? ");
+                let computerMove = computerPlay();
+
+                console.log("you played: " + playerMove);
+                console.log("computer played: " + computerMove);
+
+                result = findWinner(playerMove, computerMove);
+                console.log(result);
+                if (result[4] == 'w') {
+                    pWins++;
+                }
+                else if (result[4] == 'l') {
+                    cWins++;
+                }
+                //ignore draws
+
+                console.log(`Current score - Player: ${pWins}, Computer: ${cWins}.\n`);
+            }
+
+            if (pWins > cWins) {
+                console.log("Player wins! ");
+            } else {
+                console.log("Computer wins! ");
+            }
+            console.log(`Final Score - Player: ${pWins}, Computer: ${cWins}.`);
+
+        }
+
+    </script>
+</body>
+
+</html>
